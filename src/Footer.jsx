@@ -2,7 +2,7 @@ function Footer () {
     return (
     <>
         <div id="footer">
-            <a href="github.com/Scanceptic">By Scanceptic</a>
+            <a href="https://github.com/Scanceptic">By Scanceptic</a>
         </div>
     </>
 )
