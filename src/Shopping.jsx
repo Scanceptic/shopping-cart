@@ -2,7 +2,7 @@ import { useState } from 'react'
 import './App.css'
 import Navbar from './Navbar'
 
-function App() {
+function Shopping() {
   const [count, setCount] = useState(0)
 
   return (
@@ -14,7 +14,7 @@ function App() {
           count is {count}
         </button>
         <p>
-          This is the home page of the app - look at some interesting info and images then head over to the shop.
+          This is the shopping page of the app - add products to your basket and checkout when ready.
         </p>
         <p>
           There are links to the home page and the shopping cart page above.
@@ -24,4 +24,4 @@ function App() {
   )
 }
 
-export default App
+export default Shopping
