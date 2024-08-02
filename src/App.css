@@ -38,7 +38,7 @@ nav {
   color: white;
 }
 
-#content {
+.content {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: 1fr 2fr 2fr;
@@ -48,10 +48,22 @@ nav {
   text-align: center;
 }
 
-#content > h1 {
+.content > h1 {
   grid-column: 1 / 4;
   grid-row: 1 / 2;
   margin: auto;
+}
+
+.shopping {
+  display: grid;
+  grid-template-rows: 1fr 9fr;
+  grid-template-columns: 1fr;
+}
+
+#shopping-browser {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: repeat(auto-fill, 200px);
 }
 
 .card {

@@ -9,8 +9,8 @@ function App() {
   return (
     <>
       < Navbar />
-      <div id="content">
-        <h1>Shopping Cart</h1>
+      <div className="content home">
+        <h1>Home</h1>
         <div className='card'>
           <img src={typewriter} alt="Typewriter"/>
           <p className="attribution">Photo by <a href="https://unsplash.com/@florianklauer?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Florian Klauer</a> on <a href="https://unsplash.com/photos/black-fayorit-typewriter-with-printer-paper-mk7D-4UCfmg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
