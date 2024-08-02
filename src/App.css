@@ -61,6 +61,10 @@ nav {
   align-items: center;
 }
 
+.card img {
+  width: max(100px, 50%);
+}
+
 #footer {
   display: flex;
   justify-content: space-around;
