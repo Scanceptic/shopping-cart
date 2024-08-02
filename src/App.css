@@ -41,7 +41,7 @@ nav {
 #content {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 2fr 2fr;
   height: 100%;
   width: 80%;
   margin: 50px auto;
