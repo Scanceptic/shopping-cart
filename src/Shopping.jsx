@@ -4,7 +4,6 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 
 function Shopping() {
-
   return (
     <>
       < Navbar />
