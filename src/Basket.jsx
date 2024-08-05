@@ -1,6 +1,6 @@
 import basket from "./assets/shopping-cart.svg"
 
-function Basket() {
+const Basket = () => {
     let items = 0;
     let cost = 0;
     return (

@@ -3,7 +3,7 @@ import './App.css'
 import Navbar from './Navbar'
 import Footer from './Footer'
 
-function Shopping() {
+const Shopping = () => {
   return (
     <>
       < Navbar />
@@ -18,9 +18,6 @@ function Shopping() {
           </p>
         </div>
         <div id="shopping-browser">
-          <div className="card">
-            
-          </div>
         </div>
       </div>
       < Footer />

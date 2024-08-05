@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import Basket from "./Basket"
 
-function Navbar () {
+const Navbar = () => {
     return (
     <>
       <nav>

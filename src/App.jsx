@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 import Footer from './Footer'
 import typewriter from "./assets/typewriter.jpg";
 
-function App() {
+const App = () => {
 
   return (
     <>
