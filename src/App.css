@@ -63,7 +63,7 @@ nav {
   text-align: center;
 }
 
-.content > h1 {
+.heading {
   grid-column: 1 / 4;
   grid-row: 1 / 2;
   margin: auto;

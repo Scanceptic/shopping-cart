@@ -8,15 +8,18 @@ function Shopping() {
     <>
       < Navbar />
       <div className="content shopping">
-        <h1>Shopping</h1>
+        <div className="heading">
+          <h1>Shopping</h1>
+          <p>
+            This is the shopping page of the app - add products to your basket and checkout when ready.
+          </p>
+          <p>
+            There are links to the home page and the shopping cart page above.
+          </p>
+        </div>
         <div id="shopping-browser">
           <div className="card">
-            <p>
-              This is the shopping page of the app - add products to your basket and checkout when ready.
-            </p>
-            <p>
-              There are links to the home page and the shopping cart page above.
-            </p>
+            
           </div>
         </div>
       </div>
