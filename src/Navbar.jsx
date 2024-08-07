@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import Basket from "./Basket";
 
-const Navbar = ({ basketItems }) => {
+const Navbar = ({ basketItems = [] }) => {
   return (
     <>
       <nav>
@@ -20,7 +20,7 @@ const Navbar = ({ basketItems }) => {
 }
 
 Navbar.propTypes = {
-  basketItems: PropTypes.array.isRequired,
+  basketItems: PropTypes.array,
 };
 
 export default Navbar

@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import basket from "./assets/shopping-cart.svg"
 
-const Basket = ({ basketItems }) => {
+const Basket = ({ basketItems = [] }) => {
   const numberOfItems = basketItems.length;
   const basketCost = basketItems.reduce((total, item) => total + item.cost, 0);
 
@@ -19,7 +19,7 @@ const Basket = ({ basketItems }) => {
 }
 
 Basket.propTypes = {
-  basketItems: PropTypes.array.isRequired,
+  basketItems: PropTypes.array,
 };
 
 export default Basket;
