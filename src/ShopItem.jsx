@@ -1,7 +1,8 @@
-/* eslint-disable react/prop-types */
-const ShopItem = ({ addItemToBasket }) => {
+import PropTypes from 'prop-types';
+
+const ShopItem = ({ addItemToBasket, name, cost }) => {
     
-    const item = { name: "1894 Typewriter", cost: 189 };
+    const item = { name, cost};
 
     return (
         <div>
@@ -11,5 +12,11 @@ const ShopItem = ({ addItemToBasket }) => {
         </div>
     )
 }
+
+ShopItem.propTypes = {
+    addItemToBasket: PropTypes.func,
+    name: PropTypes.string,
+    cost: PropTypes.number,
+};
 
 export default ShopItem;
