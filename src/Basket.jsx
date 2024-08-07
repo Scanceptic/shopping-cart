@@ -1,4 +1,4 @@
-/* eslint-disable react/prop-types */
+import PropTypes from 'prop-types';
 import basket from "./assets/shopping-cart.svg"
 
 const Basket = ({ basketItems }) => {
@@ -17,5 +17,9 @@ const Basket = ({ basketItems }) => {
     </>
   )
 }
-  
+
+Basket.propTypes = {
+  basketItems: PropTypes.array.isRequired,
+};
+
 export default Basket;
