@@ -17,6 +17,27 @@ const Shopping = () => {
     setBasketItems(newBasket);
   }
 
+  // fetch fake store API data
+  function fetchStoreAPI() {
+    // create array
+    const fetchedItems = [];
+    // send fetch request to API
+    fetch('https://fakestoreapi.com/products?limit=5', { mode: "cors" })
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("server error");
+        }
+        return response.json();
+      })
+      .then((response) => fetchedItems.push(response))
+      .catch((error) => console.log(error))
+      .finally(() => console.log("loaded"));
+    // push names (title) and costs (price) to array
+    // return array
+    return fetchedItems;
+  }
+  const shopItems = fetchStoreAPI();
+
   return (
     <>
       < Navbar basketItems={basketItems}/>
@@ -31,7 +52,8 @@ const Shopping = () => {
           </p>
         </div>
         <div id="shopping-browser">
-          <ShopItem addItemToBasket={addItemToBasket}/>
+          {/* for each item in store array, create new ShopItem component here */}
+          <ShopItem addItemToBasket={addItemToBasket} name={shopItems[0].name} cost={shopItems[0].cost}/>
         </div>
       </div>
       < Footer />

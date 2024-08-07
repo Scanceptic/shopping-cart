@@ -5,7 +5,7 @@ const ShopItem = ({ addItemToBasket, name, cost }) => {
     const item = { name, cost};
 
     return (
-        <div>
+        <div className='shopItem'>
             <p>{item.name}</p>
             <p>{item.cost}</p>
             <button onClick = {() => addItemToBasket(item)}>Add to Basket</button>
