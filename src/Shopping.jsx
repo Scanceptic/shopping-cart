@@ -16,7 +16,9 @@ const Shopping = () => {
     for (let i=0; i<quantity; i++) {
       newItems.push(item);
     }
-    const newBasket = [...basketItems, newItems];
+    const newBasket = basketItems.concat(newItems);
+    console.log("New basket:");
+    console.log(newBasket);
     // set basket to new basket
     setBasketItems(newBasket);
   }
@@ -55,16 +57,16 @@ const Shopping = () => {
   // push the titles and prices for each item to a new ShopItem component
   const localItems = [];
   if (shopItems.loading) {
-    console.log("loading...")
+    /* console.log("loading...") */
   } else if (!shopItems.loading) {
-    console.log("Loaded Items:");
-    console.log(shopItems);
+    /* console.log("Loaded Items:");
+    console.log(shopItems); */
     for (let i=0; i<shopItems.items.length; i++) {
       // TODO - FIX PROPS ASSIGNMENT TO SHOPITEMS
       localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={shopItems.items[i].name} cost={shopItems.items[i].cost} image={shopItems.items[i].image} key={shopItems.items[i].id}/>);
     }
-    console.log("Local Items:");
-    console.log(localItems);
+    /* console.log("Local Items:");
+    console.log(localItems); */
     // make a list of items for if no fake store data is available
     /* console.log("Local Items length:");
     console.log(localItems.length);
