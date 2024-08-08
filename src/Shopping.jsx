@@ -46,9 +46,18 @@ const Shopping = () => {
   };
 
   const shopItems = useStoreItems();
-  console.log(shopItems);
+  //console.log(shopItems);
   // push the titles and prices for each item to a new ShopItem component
-
+  const localItems = [];
+  if (shopItems.loading) {
+    console.log("loading...")
+  } else if (!shopItems.loading) {
+    for (let i=0; i<shopItems.items.length; i++) {
+      // TODO - FIX PROPS ASSIGNMENT TO SHOPITEMS
+      localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={shopItems.items[i].title} cost={shopItems.items[i].price}/>);
+    }
+  }
+  console.log(localItems);
   // render the collection of ShopItems using JSX in the Shopping component
   return (
     <>
@@ -66,6 +75,7 @@ const Shopping = () => {
         <div id="shopping-browser">
           {/* for each item in store array, create new ShopItem component here */}
           <ShopItem addItemToBasket={addItemToBasket} name={"Typewriter"} cost={999}/>
+          {!shopItems.loading && localItems}
         </div>
       </div>
       < Footer />
