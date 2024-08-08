@@ -79,7 +79,7 @@ nav {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-template-rows: repeat(auto-fill, 300px);
-  
+  width: 100%;
 }
 
 .card {
@@ -94,7 +94,9 @@ nav {
 }
 
 .shop-item {
-  max-width: 27vw;
+  max-width: 350px;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 #footer {
