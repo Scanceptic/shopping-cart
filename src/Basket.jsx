@@ -12,7 +12,7 @@ const Basket = ({ basketItems = [] }) => {
             <img src={basket} alt="Shop"></img>
         </a>  
         <p className="bold">{numberOfItems || 0} items</p>
-        <p className="bold">£{basketCost.toFixed(2)}</p>
+        <p className="bold">£{parseInt(basketCost).toFixed(2)}</p>
       </div>
     </>
   )

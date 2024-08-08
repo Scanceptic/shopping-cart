@@ -36,7 +36,7 @@ const Shopping = () => {
         })
         .then((response) => response.map((item) => {
           console.log(item);
-          fetchedItems.push({name: item["title"], cost: item["price"],});
+          fetchedItems.push({name: item["title"], cost: item["price"], image: item["image"],});
         }),
         setItems(fetchedItems),
         )
@@ -57,14 +57,17 @@ const Shopping = () => {
     console.log(shopItems);
     for (let i=0; i<shopItems.items.length; i++) {
       // TODO - FIX PROPS ASSIGNMENT TO SHOPITEMS
-      localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={shopItems.items[i].title} cost={shopItems.items[i].price}/>);
+      localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={shopItems.items[i].name} cost={shopItems.items[i].cost} image={shopItems.items[i].image}/>);
     }
     console.log("Local Items:");
     console.log(localItems);
     // make a list of items for if no fake store data is available
-    if (localItems.length === 0) {
+    console.log("Local Items length:");
+    console.log(localItems.length);
+    if (localItems.length === 0 && !shopItems.loading) {
+      console.log("No items, creating defaults");
       for (let i=0; i<6; i++) {
-        localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={"Typewriter Version " + Math.floor(2 + i * Math.random() * 12)} cost={"£" + Math.floor(300+i*100*Math.random())}/>)
+        localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={"Typewriter Version " + Math.floor(2 + i * Math.random() * 12)} cost={Math.floor(300+i*100*Math.random())}/>)
       }
     }
   }

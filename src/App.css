@@ -78,7 +78,8 @@ nav {
 #shopping-browser {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: repeat(auto-fill, 200px);
+  grid-template-rows: repeat(auto-fill, 300px);
+  
 }
 
 .card {
@@ -90,6 +91,10 @@ nav {
 
 .card img {
   width: max(100px, 50%);
+}
+
+.shop-item {
+  max-width: 27vw;
 }
 
 #footer {
