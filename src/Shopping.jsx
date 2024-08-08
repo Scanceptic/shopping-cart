@@ -16,7 +16,7 @@ const Shopping = () => {
     // set basket to new basket
     setBasketItems(newBasket);
   }
-
+// FAKE STORE API DOWN @ 14:49 08/08/2024
   // fetch fake store API data
   const useStoreItems = () => {
     // create fetchedItems state
@@ -35,6 +35,7 @@ const Shopping = () => {
           return response.json();
         })
         .then((response) => response.map((item) => {
+          console.log(item);
           fetchedItems.push({name: item["title"], cost: item["price"],});
         }),
         setItems(fetchedItems),
@@ -52,12 +53,22 @@ const Shopping = () => {
   if (shopItems.loading) {
     console.log("loading...")
   } else if (!shopItems.loading) {
+    console.log("Loaded Items:");
+    console.log(shopItems);
     for (let i=0; i<shopItems.items.length; i++) {
       // TODO - FIX PROPS ASSIGNMENT TO SHOPITEMS
       localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={shopItems.items[i].title} cost={shopItems.items[i].price}/>);
     }
+    console.log("Local Items:");
+    console.log(localItems);
+    // make a list of items for if no fake store data is available
+    if (localItems.length === 0) {
+      for (let i=0; i<6; i++) {
+        localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={"Typewriter Version " + Math.floor(2 + i * Math.random() * 12)} cost={"£" + Math.floor(300+i*100*Math.random())}/>)
+      }
+    }
   }
-  console.log(localItems);
+  
   // render the collection of ShopItems using JSX in the Shopping component
   return (
     <>
@@ -74,7 +85,6 @@ const Shopping = () => {
         </div>
         <div id="shopping-browser">
           {/* for each item in store array, create new ShopItem component here */}
-          <ShopItem addItemToBasket={addItemToBasket} name={"Typewriter"} cost={999}/>
           {!shopItems.loading && localItems}
         </div>
       </div>
