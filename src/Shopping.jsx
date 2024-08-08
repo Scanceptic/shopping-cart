@@ -10,9 +10,13 @@ const Shopping = () => {
   const [basketItems, setBasketItems] = useState([]);
 
   // add new item to basket
-  function addItemToBasket(item) {
+  function addItemToBasket(item, quantity) {
+    const newItems = [];
     // copy current basket with new item added
-    const newBasket = [...basketItems, item];
+    for (let i=0; i<quantity; i++) {
+      newItems.push(item);
+    }
+    const newBasket = [...basketItems, newItems];
     // set basket to new basket
     setBasketItems(newBasket);
   }
@@ -76,7 +80,7 @@ const Shopping = () => {
   return (
     <>
       < Navbar basketItems={basketItems}/>
-      <div className="content shopping">
+      <div className="shopping">
         <div className="heading">
           <h1>Shopping</h1>
           <p>
@@ -88,6 +92,7 @@ const Shopping = () => {
         </div>
         <div id="shopping-browser">
           {/* for each item in store array, create new ShopItem component here */}
+          <ShopItem addItemToBasket={addItemToBasket} name="Typewriter Generic" cost={44} />
           {!shopItems.loading && localItems}
         </div>
       </div>

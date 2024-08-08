@@ -9,8 +9,14 @@ const ShopItem = ({ addItemToBasket, name, cost, image=typewriter }) => {
         <div className='shop-item'>
             <p>{item.name}</p>
             <p>{"£"+item.cost}</p>
-            <img src={image} height={"50%"}></img>
-            <button onClick = {() => addItemToBasket(item)}>Add to Basket</button>
+            <img src={image}></img>
+            <div className='basket-container'>
+                <button className='add-to-basket' onClick = {() => {
+                    const inputElement = document.getEl
+                    addItemToBasket(item)
+                }}>Add to Basket</button>
+                <input className='item-quantity' type='number' min={0} placeholder='0'></input>
+            </div>
         </div>
     )
 }
