@@ -13,6 +13,7 @@ const useStoreItems = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    console.log("useEffect in useStoreItems called");
     const fetchedItems = [];
     // send fetch request to API
     fetch('https://fakestoreapi.com/products?limit=5', { mode: "cors" })
@@ -34,7 +35,7 @@ const useStoreItems = () => {
 };
 
 const Shopping = () => {
-  
+  // TODO - fix basket being reset to empty every time the basket updates
   // create state for list of basket items
   const [basketItems, setBasketItems] = useState([]);
   // add new item to basket
@@ -46,7 +47,13 @@ const Shopping = () => {
     for (let i=0; i<quantity; i++) {
       newItems.push(item);
     }
+    console.log("newItems:")
+    console.log(newItems)
+    console.log("current items:")
+    console.log(basketItems)
     const newBasket = basketItems.concat(newItems);
+    console.log("new basket")
+    console.log(newBasket);
     // set basket to new basket
     setBasketItems(newBasket);
   }
