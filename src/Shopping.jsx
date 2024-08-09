@@ -47,8 +47,6 @@ const Shopping = () => {
       newItems.push(item);
     }
     const newBasket = basketItems.concat(newItems);
-    console.log("New basket:");
-    console.log(newBasket);
     // set basket to new basket
     setBasketItems(newBasket);
   }
@@ -60,15 +58,16 @@ const Shopping = () => {
 
   // Use useEffect to update localItems once shopItems have finished loading
   useEffect(() => {
-    if (!shopItems.loading) {
+    if (!shopItems.loading && shopItems.items) {
     console.log("setLocalItems called");
     // set state for local items
     setLocalItems(shopItems.items.map((item) => {
       // for each shop item, construct a react element
-      <ShopItem addItemToBasket={addItemToBasket} name={item.name} cost={item.cost} image={item.image} key={item.id}/>
+      return <ShopItem addItemToBasket={addItemToBasket} name={item.name} cost={item.cost} image={item.image} key={item.id}/>
     }));
   }
-}, [addItemToBasket, shopItems.items, shopItems.loading]);
+// eslint-disable-next-line react-hooks/exhaustive-deps
+}, [shopItems.items, shopItems.loading]);
   
   // render the collection of ShopItems using JSX in the Shopping component
   return (
