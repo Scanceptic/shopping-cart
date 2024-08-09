@@ -4,13 +4,43 @@ import Navbar from './Navbar';
 import Footer from './Footer';
 import ShopItem from './ShopItem';
 
+// fetch fake store API data
+const useStoreItems = () => {
+  console.log("useStoreItems called");
+  // create fetchedItems state - items, error status, loading status
+  const [items, setItems] = useState(null);
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchedItems = [];
+    // send fetch request to API
+    fetch('https://fakestoreapi.com/products?limit=5', { mode: "cors" })
+      .then((response) => {
+        if (response.status >= 400) {
+          throw new Error("server error");
+        }
+        return response.json();
+      })
+      .then((response) => response.map((item) => {
+        // for each item in the response, push some properties to a new array
+        fetchedItems.push({name: item["title"], cost: item["price"], image: item["image"], id: item["id"],});
+      }))
+      .then(() => setItems(fetchedItems))
+      .catch((error) => setError(error))
+      .finally(() => setLoading(false));
+  }, []);
+  return { items, error, loading };
+};
+
 const Shopping = () => {
   
   // create state for list of basket items
   const [basketItems, setBasketItems] = useState([]);
-
   // add new item to basket
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   function addItemToBasket(item, quantity) {
+    console.log("addItemToBasket called");
     const newItems = [];
     // copy current basket with new item added
     for (let i=0; i<quantity; i++) {
@@ -22,61 +52,23 @@ const Shopping = () => {
     // set basket to new basket
     setBasketItems(newBasket);
   }
-// FAKE STORE API DOWN @ 14:49 08/08/2024
-  // fetch fake store API data
-  const useStoreItems = () => {
-    // create fetchedItems state
-    const [items, setItems] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
 
-    useEffect(() => {
-      const fetchedItems = [];
-      // send fetch request to API
-      fetch('https://fakestoreapi.com/products?limit=5', { mode: "cors" })
-        .then((response) => {
-          if (response.status >= 400) {
-            throw new Error("server error");
-          }
-          return response.json();
-        })
-        .then((response) => response.map((item) => {
-          //console.log(item);
-          fetchedItems.push({name: item["title"], cost: item["price"], image: item["image"], id: item["id"],});
-        }),
-        setItems(fetchedItems),
-        )
-        .catch((error) => setError(error))
-        .finally(() => setLoading(false));
-    }, []);
-    return { items, error, loading };
-  };
-
+  // fetch API shop items
   const shopItems = useStoreItems();
-  //console.log(shopItems);
-  // push the titles and prices for each item to a new ShopItem component
-  const localItems = [];
-  if (shopItems.loading) {
-    /* console.log("loading...") */
-  } else if (!shopItems.loading) {
-    /* console.log("Loaded Items:");
-    console.log(shopItems); */
-    for (let i=0; i<shopItems.items.length; i++) {
-      // TODO - FIX PROPS ASSIGNMENT TO SHOPITEMS
-      localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={shopItems.items[i].name} cost={shopItems.items[i].cost} image={shopItems.items[i].image} key={shopItems.items[i].id}/>);
-    }
-    /* console.log("Local Items:");
-    console.log(localItems); */
-    // make a list of items for if no fake store data is available
-    /* console.log("Local Items length:");
-    console.log(localItems.length);
-    if (localItems.length === 0 && !shopItems.loading) {
-      console.log("No items, creating defaults");
-      for (let i=0; i<6; i++) {
-        localItems.push(<ShopItem addItemToBasket={addItemToBasket} name={"Typewriter Version " + Math.floor(2 + i * Math.random() * 12)} cost={Math.floor(300+i*100*Math.random())}/>)
-      }
-    } */
+  // create state for local items to trigger re-render on change
+  const [localItems, setLocalItems] = useState([]);
+
+  // Use useEffect to update localItems once shopItems have finished loading
+  useEffect(() => {
+    if (!shopItems.loading) {
+    console.log("setLocalItems called");
+    // set state for local items
+    setLocalItems(shopItems.items.map((item) => {
+      // for each shop item, construct a react element
+      <ShopItem addItemToBasket={addItemToBasket} name={item.name} cost={item.cost} image={item.image} key={item.id}/>
+    }));
   }
+}, [addItemToBasket, shopItems.items, shopItems.loading]);
   
   // render the collection of ShopItems using JSX in the Shopping component
   return (
