@@ -8,14 +8,19 @@ const ShopItem = ({ addItemToBasket, name, cost, image=typewriter }) => {
     return (
         <div className='shop-item'>
             <p>{item.name}</p>
-            <p>{"£"+item.cost}</p>
+            <p>{"£"+(item.cost).toFixed(2)}</p>
             <img src={image}></img>
             <div className='basket-container'>
                 <button className='add-to-basket' onClick = {(event) => {
                     const inputElement = event.target.parentElement.querySelector('.item-quantity');
-                    addItemToBasket(item, inputElement.value);
+                    const quantity = parseInt(inputElement.value) || 0;
+                    if (quantity > 0) {
+                        addItemToBasket(item, quantity);
+                    } else {
+                        console.warn("Please enter a valid quantity");
+                    }
                 }}>Add to Basket</button>
-                <input className='item-quantity' type='number' min={0} placeholder='0'></input>
+                <input className='item-quantity' type='number' min={1} placeholder='1' defaultValue={1}></input>
             </div>
         </div>
     )

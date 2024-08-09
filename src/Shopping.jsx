@@ -36,6 +36,7 @@ const useStoreItems = () => {
 
 const Shopping = () => {
   // TODO - fix basket being reset to empty every time the basket updates
+    // whenever the useStoreItems is called it resets basket to empty again
   // create state for list of basket items
   const [basketItems, setBasketItems] = useState([]);
   // add new item to basket
@@ -66,15 +67,15 @@ const Shopping = () => {
   // Use useEffect to update localItems once shopItems have finished loading
   useEffect(() => {
     if (!shopItems.loading && shopItems.items) {
-    console.log("setLocalItems called");
-    // set state for local items
-    setLocalItems(shopItems.items.map((item) => {
-      // for each shop item, construct a react element
-      return <ShopItem addItemToBasket={addItemToBasket} name={item.name} cost={item.cost} image={item.image} key={item.id}/>
-    }));
-  }
-// eslint-disable-next-line react-hooks/exhaustive-deps
-}, [shopItems.items, shopItems.loading]);
+      console.log("setLocalItems called");
+      // set state for local items
+      setLocalItems(shopItems.items.map((item) => {
+        // for each shop item, construct a react element
+        return <ShopItem addItemToBasket={addItemToBasket} name={item.name} cost={item.cost} image={item.image} key={item.id}/>
+      }));
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [shopItems.items, shopItems.loading]);
   
   // render the collection of ShopItems using JSX in the Shopping component
   return (
