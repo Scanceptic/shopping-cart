@@ -43,20 +43,10 @@ const Shopping = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function addItemToBasket(item, quantity) {
     console.log("addItemToBasket called");
-    const newItems = [];
-    // copy current basket with new item added
-    for (let i=0; i<quantity; i++) {
-      newItems.push(item);
-    }
-    console.log("newItems:")
-    console.log(newItems)
-    console.log("current items:")
-    console.log(basketItems)
-    const newBasket = basketItems.concat(newItems);
-    console.log("new basket")
-    console.log(newBasket);
-    // set basket to new basket
-    setBasketItems(newBasket);
+    setBasketItems(prevBasketItems => {
+      const newItems = Array(quantity).fill(item);
+      return [...prevBasketItems, ...newItems];
+    });
   }
 
   // fetch API shop items
